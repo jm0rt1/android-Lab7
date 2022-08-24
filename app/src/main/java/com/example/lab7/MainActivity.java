@@ -14,8 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.json.JSONException;
 
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         recyclerView = findViewById(R.id.recycler_view);
 
-        RefreshRecyclerView();
+        refreshRecyclerView();
 //        refreshDB();
     }
     @Override
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void RefreshRecyclerView(){
+    public void refreshRecyclerView(){
         try{
             ArrayList<String[]> data = ServerInterface.Posts.getPosts();
 

@@ -1,6 +1,9 @@
 package com.example.lab7;
 
+import android.content.Context;
 import android.os.Build;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -66,8 +69,38 @@ public class ServerInterface {
             return names;
         }
 
-        public static void sendPost(String title, String content){
+        public static void sendPost(int owner_id,String title, String content,  Context c){
 
+
+
+
+            if(title.equals(""))
+            {
+                Toast.makeText(c, "title field cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+            else if(content.equals(""))
+            {
+                Toast.makeText(c, "content field cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+            else if(!(owner_id>1))
+            {
+                Toast.makeText(c, "owner id field not valid ="+String.valueOf(owner_id), Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                JSONObject newPost = new JSONObject();
+                try {
+                    newPost.put(Keys.TITLE, title);
+                    newPost.put(Keys.CONTENT, content);
+                    newPost.put(Keys.id, owner_id);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                ServerCommands.sendHttpPostRequest(ServerCommands.Urls.POSTS_ADD, newPost);
+
+            }
         }
 
 

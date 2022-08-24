@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/edit_text_border.xml" value="0.145" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2398834228515625" />
-        <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.16847826086956522" />
+        <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.22665008544921872" />
         <entry key="app/src/main/res/layout/list_view_item.xml" value="0.16160081053698075" />
         <entry key="app/src/main/res/layout/post_card.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.29010416666666666" />

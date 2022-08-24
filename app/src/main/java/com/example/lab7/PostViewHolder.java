@@ -15,8 +15,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostViewHolder(View view)
     {
         super(view);
-        title = view.findViewById(R.id.post_content);
-        content = view.findViewById(R.id.post_title);
+        title = view.findViewById(R.id.post_title);
+        content = view.findViewById(R.id.post_content);
         this.view = view;
     }
 

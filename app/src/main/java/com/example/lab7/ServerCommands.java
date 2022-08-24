@@ -15,7 +15,9 @@ import java.net.UnknownHostException;
 
 public class ServerCommands {
     public static class Urls{
-        public static String USERS = "http://10.0.2.2/lab7/api/users";
+        public static String USERS = "http://10.0.2.2/jm/api/users";
+        public static String POSTS = "http://10.0.2.2/jm/api/posts";
+
     }
 
     public static String downloadJSONUsingHTTPGetRequest(String urlString)

@@ -49,7 +49,7 @@ public class ServerInterface {
 
 
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public static ArrayList<String[]> getPost() throws JSONException {
+        public static ArrayList<String[]> getPosts() throws JSONException {
 
             guard();
 

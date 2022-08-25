@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +27,16 @@ public class NewPostActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addNewPost(View v){
+
+        EditText titleEditText =  findViewById(R.id.post_title);
+        EditText contentEditText = findViewById(R.id.post_content);
         ServerInterface.Posts.sendPost(1,
-                findViewById(R.id.post_title).toString(),
-                findViewById(R.id.post_content).toString(),
+                titleEditText.getText().toString(),
+                contentEditText.getText().toString(),
                 getApplicationContext());
-        MainActivity activity =(MainActivity)getParent();
-        activity.refreshRecyclerView();
-        finish();
+
+//        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//        startActivity(intent);
     }
 
 }

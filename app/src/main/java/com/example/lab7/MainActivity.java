@@ -29,13 +29,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar(findViewById(R.id.custom_toolbar));
+        try{
+            setSupportActionBar(findViewById(R.id.custom_toolbar));
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        recyclerView = findViewById(R.id.recycler_view);
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            recyclerView = findViewById(R.id.recycler_view);
 
-        refreshRecyclerView();
+            RefreshRecyclerView();
+        } catch (Exception e){
+            Log.e(TAG, e.toString());
+        }
+
 //        refreshDB();
     }
     @Override
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void refreshRecyclerView(){
+    public void RefreshRecyclerView(){
         try{
             ArrayList<String[]> data = ServerInterface.Posts.getPosts();
 

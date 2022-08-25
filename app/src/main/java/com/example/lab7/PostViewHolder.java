@@ -11,6 +11,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     TextView title;
     TextView content;
     View view;
+    String id;
 
     public PostViewHolder(View view)
     {

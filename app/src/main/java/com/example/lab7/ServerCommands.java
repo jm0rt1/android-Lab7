@@ -17,6 +17,7 @@ public class ServerCommands {
     public static class Urls{
         public static String POSTS_ADD = "http://10.0.2.2/jm/api/posts/add";
         public static String POSTS = "http://10.0.2.2/jm/api/posts";
+        public static String POSTS_DELETE = "http://10.0.2.2/jm/api/posts/delete";
 
     }
 
@@ -29,7 +30,7 @@ public class ServerCommands {
             if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK)
             {
                 InputStream stream = httpConnection.getInputStream();
-                jsonString = getStringfromStream(stream);
+                jsonString = getStringFromStream(stream);
             }
             httpConnection.disconnect();
             Log.d("JSONObject", "Got object!");
@@ -47,7 +48,7 @@ public class ServerCommands {
         return jsonString;
     }
 
-    private static String getStringfromStream(InputStream stream)
+    private static String getStringFromStream(InputStream stream)
     {
         String line;
         String jsonString = null;
@@ -163,7 +164,7 @@ public class ServerCommands {
             if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK)
             {
                 InputStream stream = httpConnection.getInputStream();
-                jsonString = getStringfromStream(stream); //might want to read the response
+                jsonString = getStringFromStream(stream); //might want to read the response
             }
             httpConnection.disconnect();
             return true;

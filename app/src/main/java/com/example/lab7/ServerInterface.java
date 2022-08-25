@@ -25,7 +25,8 @@ public class ServerInterface {
         private static class Keys {
             public static String TITLE ="title";
             public static String CONTENT = "content";
-            public static String id = "id";
+            public static String OWNER = "owner_id";
+            public static String ID = "id";
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,10 +60,12 @@ public class ServerInterface {
             JSONArray jsonArray = new JSONArray(postsJsonCache);
             ArrayList<String[]> names = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++) {
-                String[] pair = new String[2];
+                String[] pair = new String[3];
                 JSONObject obj = jsonArray.getJSONObject(i);
                 pair[0] = obj.getString(Keys.TITLE);
                 pair[1] = obj.getString(Keys.CONTENT);
+                pair[2] = obj.getString(Keys.ID);
+
                 names.add(pair);
 
             }
@@ -82,7 +85,7 @@ public class ServerInterface {
             {
                 Toast.makeText(c, "content field cannot be empty", Toast.LENGTH_SHORT).show();
             }
-            else if(!(owner_id>1))
+            else if(!(owner_id>=1))
             {
                 Toast.makeText(c, "owner id field not valid ="+String.valueOf(owner_id), Toast.LENGTH_SHORT).show();
             }
@@ -92,8 +95,7 @@ public class ServerInterface {
                 try {
                     newPost.put(Keys.TITLE, title);
                     newPost.put(Keys.CONTENT, content);
-                    newPost.put(Keys.id, owner_id);
-
+                    newPost.put(Keys.OWNER, owner_id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -102,8 +104,10 @@ public class ServerInterface {
 
             }
         }
-
-
+        public static boolean deletePost(String id){
+            boolean result = ServerCommands.sendHttpDeleteRequest(ServerCommands.Urls.POSTS_DELETE +"?id="+ id);
+            return result;
+        }
     }
 
 }

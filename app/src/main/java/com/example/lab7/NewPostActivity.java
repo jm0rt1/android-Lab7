@@ -35,8 +35,8 @@ public class NewPostActivity extends AppCompatActivity {
                 contentEditText.getText().toString(),
                 getApplicationContext());
 
-//        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
     }
 
 }

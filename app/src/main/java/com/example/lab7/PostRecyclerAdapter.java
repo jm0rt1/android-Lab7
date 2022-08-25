@@ -41,35 +41,40 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder>{
         holder.content.setText(data.get(position)[1]);
         holder.id = data.get(position)[2];
         holder.view.setOnClickListener(new View.OnClickListener(){
-
-                        @Override
+            @Override
             public void onClick(View v) {
 
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-
-                                ServerInterface.Posts.deletePost(holder.id);
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
-                                break;
-                        }
-                    }
-                };
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                        .setNegativeButton("No", dialogClickListener).show();
+                askToDelete(v, holder);
 
             }
         });
     }
 
+    private void askToDelete(View v, PostViewHolder holder) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        Intent intent = new Intent(v.getContext(),MainActivity.class);
+
+                        ServerInterface.Posts.deletePost(holder.id);
+                        v.getContext().startActivity(intent);
+
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
 
 
     @Override
